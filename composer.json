@@ -28,6 +28,12 @@
             ]
         }
     },
+    "repositories": [
+        {
+          "type": "git",
+          "url": "git://github.com/OGhawsi/winkModified.git"
+        }
+     ],
     "config": {
         "sort-packages": true
     },
