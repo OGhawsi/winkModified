@@ -3731,6 +3731,7 @@ __webpack_require__.r(__webpack_exports__);
         slug: '',
         excerpt: '',
         locale: '',
+        featured: false,
         tags: [],
         author_id: '',
         featured_image: '',
@@ -3842,6 +3843,7 @@ __webpack_require__.r(__webpack_exports__);
         this.form.slug = data.slug;
         this.form.excerpt = data.excerpt;
         this.form.locale = data.locale;
+        this.form.featured = data.featured;
         this.form.body = data.body;
         this.form.published = data.published;
         this.form.markdown = data.markdown;
@@ -4379,7 +4381,7 @@ __webpack_require__.r(__webpack_exports__);
    * Prepare the component.
    */
   mounted: function mounted() {
-    document.title = "Author — Wink.";
+    document.title = "Author — Science4All";
     this.loadEntry();
   },
   watch: {
@@ -6742,7 +6744,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -50391,7 +50393,7 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n                    I want a rich text editors by ghawsi\n                "
+                              "\n                    I want a rich text editor\n                "
                             )
                           ]
                         ),
@@ -50587,7 +50589,7 @@ var render = function() {
                 _c(
                   "label",
                   { staticClass: "input-label", attrs: { for: "excerpt" } },
-                  [_vm._v("Eerpt")]
+                  [_vm._v("Excerpt")]
                 ),
                 _vm._v(" "),
                 _c("textarea", {
@@ -50627,35 +50629,117 @@ var render = function() {
                 _c(
                   "label",
                   { staticClass: "input-label", attrs: { for: "locale" } },
-                  [_vm._v("Locale")]
+                  [_vm._v("Post Language")]
                 ),
                 _vm._v(" "),
-                _c("textarea", {
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.locale,
+                        expression: "form.locale"
+                      }
+                    ],
+                    staticClass: "input",
+                    attrs: { id: "locale" },
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          _vm.form,
+                          "locale",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      }
+                    }
+                  },
+                  [
+                    _c("option", { attrs: { disabled: "" } }, [
+                      _vm._v("Select Post Language")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "en" } }, [
+                      _vm._v("English")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "ps" } }, [
+                      _vm._v("Pashto")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "fa" } }, [_vm._v("Dari")])
+                  ]
+                ),
+                _vm._v(" "),
+                _c("form-errors", { attrs: { errors: _vm.errors.locale } })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "input-group" },
+              [
+                _c(
+                  "label",
+                  { staticClass: "input-label", attrs: { for: "featured" } },
+                  [_vm._v("Featured Post - " + _vm._s(_vm.form.featured))]
+                ),
+                _vm._v(" "),
+                _c("input", {
                   directives: [
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.form.locale,
-                      expression: "form.locale"
+                      value: _vm.form.featured,
+                      expression: "form.featured"
                     }
                   ],
-                  staticClass: "input",
-                  attrs: {
-                    placeholder: "type your language as 'en' or 'ps'",
-                    id: "locale"
+                  staticClass: "checkbox",
+                  attrs: { type: "checkbox", id: "featured" },
+                  domProps: {
+                    checked: Array.isArray(_vm.form.featured)
+                      ? _vm._i(_vm.form.featured, null) > -1
+                      : _vm.form.featured
                   },
-                  domProps: { value: _vm.form.locale },
                   on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
+                    change: function($event) {
+                      var $$a = _vm.form.featured,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = null,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            _vm.$set(_vm.form, "featured", $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            _vm.$set(
+                              _vm.form,
+                              "featured",
+                              $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                            )
+                        }
+                      } else {
+                        _vm.$set(_vm.form, "featured", $$c)
                       }
-                      _vm.$set(_vm.form, "locale", $event.target.value)
                     }
                   }
                 }),
                 _vm._v(" "),
-                _c("form-errors", { attrs: { errors: _vm.errors.locale } })
+                _c("form-errors", { attrs: { errors: _vm.errors.featured } })
               ],
               1
             ),
@@ -66682,7 +66766,8 @@ __webpack_require__.r(__webpack_exports__);
      * src: https://gist.github.com/mathewbyrne/1280286
      */
     slugify: function slugify(text) {
-      return text.toString().toLowerCase().replace(/\s+/g, '-').replace(/[^\w\-]+/g, '').replace(/\-\-+/g, '-');
+      return text.toString().toLowerCase().replace(/\s+/g, '-') // .replace(/[^\w\-]+/g, '')
+      .replace(/\-\-+/g, '-');
     },
 
     /**

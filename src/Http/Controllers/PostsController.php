@@ -72,6 +72,7 @@ class PostsController
             'title' => request('title'),
             'excerpt' => request('excerpt', ''),
             'locale' => request('locale', ''),
+            'featured' => request('featured'),
             'slug' => request('slug'),
             'body' => request('body', ''),
             'published' => request('published'),

@@ -52,7 +52,7 @@
          * Prepare the component.
          */
         mounted() {
-            document.title = "Author — Wink.";
+            document.title = "Author — Science4All";
 
             this.loadEntry();
 
