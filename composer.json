@@ -1,5 +1,5 @@
 {
-    "name": "themsaid_ghawsi/wink",
+    "name": "themsaid/wink",
     "description": "Wink Publishing Framework.",
     "keywords": ["framework", "laravel", "blog"],
     "license": "MIT",
@@ -28,12 +28,6 @@
             ]
         }
     },
-    "repositories": [
-        {
-          "type": "git",
-          "url": "git://github.com/OGhawsi/winkModified.git"
-        }
-     ],
     "config": {
         "sort-packages": true
     },
