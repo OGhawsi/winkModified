@@ -82,7 +82,7 @@
                             [{'header': '2'}, {'header': '3'}],
                             [{'list': 'ordered'}, {'list': 'bullet'}, 'link'],
                             ['blockquote', 'code-block'],
-//                        [{'direction': 'rtl'}],
+                            // [{'direction': 'rtl'}],
                         ]
                     },
                     theme: 'bubble',

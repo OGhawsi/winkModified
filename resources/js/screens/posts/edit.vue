@@ -37,6 +37,7 @@
                     title: 'Draft',
                     slug: '',
                     excerpt: '',
+                    locale: '',
                     tags: [],
                     author_id: '',
                     featured_image: '',
@@ -150,6 +151,7 @@
                     this.form.title = data.title;
                     this.form.slug = data.slug;
                     this.form.excerpt = data.excerpt;
+                    this.form.locale = data.locale;
                     this.form.body = data.body;
                     this.form.published = data.published;
                     this.form.markdown = data.markdown;
@@ -418,7 +420,7 @@
 
                 <div v-if="form.markdown == null">
                     <button class="w-full mb-5 hover:bg-lighter text-text-color block bg-very-light px-3 py-5 rounded" @click="form.markdown = false">
-                        I want a rich text editor
+                        I want a rich text editors by ghawsi
                     </button>
                     <button class="w-full mb-5 hover:bg-lighter text-text-color block bg-very-light px-3 py-5 rounded" @click="form.markdown = true">
                         I will write markdown
@@ -465,13 +467,22 @@
             </div>
 
             <div class="input-group">
-                <label for="excerpt" class="input-label">Excerpt</label>
+                <label for="excerpt" class="input-label">Eerpt</label>
                 <textarea class="input"
                           v-model="form.excerpt"
                           placeholder="What's this post about?"
                           id="excerpt"></textarea>
 
                 <form-errors :errors="errors.excerpt"></form-errors>
+            </div>
+            <div class="input-group">
+                <label for="locale" class="input-label">Locale</label>
+                <textarea class="input"
+                          v-model="form.locale"
+                          placeholder="type your language as 'en' or 'ps'"
+                          id="locale"></textarea>
+
+                <form-errors :errors="errors.locale"></form-errors>
             </div>
 
             <div class="mt-10">

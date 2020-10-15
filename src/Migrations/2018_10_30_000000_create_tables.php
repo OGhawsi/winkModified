@@ -34,6 +34,7 @@ class CreateTables extends Migration
             $table->string('slug')->unique();
             $table->string('title');
             $table->text('excerpt');
+            $table->text('locale')->nullable();
             $table->text('body');
             $table->boolean('published')->default(false);
             $table->dateTime('publish_date')->default('2018-10-10 00:00:00');
