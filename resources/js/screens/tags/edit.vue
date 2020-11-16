@@ -22,6 +22,7 @@
                     id: '',
                     name: '',
                     slug: '',
+                    locale: '',
                     meta: {
                         meta_description: '',
                         opengraph_title: '',
@@ -51,6 +52,7 @@
                 if (this.id != 'new') {
                     this.form.name = response.data.entry.name;
                     this.form.slug = response.data.entry.slug;
+                    this.form.locale = response.data.entry.locale;
 
                     this.form.meta = {
                         meta_description: response.data.entry.meta.meta_description || '',
@@ -191,6 +193,16 @@
                            id="slug">
 
                     <form-errors :errors="form.errors.slug"></form-errors>
+                </div>
+                <div class="input-group flex">
+                    <label for="locale" class="input-label">Tag Language</label>
+                    <select v-model="form.locale" id="locale" class="">
+                        <option value="en" checked selected>English</option>
+                        <option value="ps">Pashto</option>
+                        <option value="fa">Dari</option>
+                    </select>
+
+                    <!-- <form-errors :errors="errors.locale"></form-errors> -->
                 </div>
             </div>
         </div>

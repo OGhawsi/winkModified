@@ -17,6 +17,7 @@ class CreateTables extends Migration
             $table->uuid('id')->primary();
             $table->string('slug')->unique();
             $table->string('name');
+            $table->string('locale')->default('en');
             $table->timestamps();
 
             $table->index('created_at');
@@ -29,12 +30,21 @@ class CreateTables extends Migration
             $table->unique(['post_id', 'tag_id']);
         });
 
+        Schema::create('wink_contacts', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->text('bio');
+            $table->timestamps();
+
+        });
+
         Schema::create('wink_posts', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('slug')->unique();
             $table->string('title');
             $table->text('excerpt');
-            $table->text('locale')->nullable();
+            $table->string('locale')->default('en');
             $table->boolean('featured')->default(false);
             $table->text('body');
             $table->boolean('published')->default(false);
@@ -64,6 +74,60 @@ class CreateTables extends Migration
             $table->text('body');
             $table->timestamps();
         });
+
+        /**
+         * Roles and Abilities
+         * 
+         */
+        Schema::create('roles', function (Blueprint $table) {
+            $table->uuid('id');
+            $table->string('name');
+            $table->string('label')->nullable();
+            $table->timestamps();
+        });
+
+        Schema::create('abilities', function (Blueprint $table) {
+            $table->uuid('id');
+            $table->string('name');
+            $table->string('label')->nullable();
+            $table->timestamps();
+        });
+
+        Schema::create('ability_role', function (Blueprint $table) {
+            $table->unique(['role_id', 'ability_id']);
+
+            $table->uuid('role_id');
+            $table->uuid('ability_id');
+            $table->timestamps();
+
+            // $table->foreign('role_id')
+            //     ->references('id')
+            //     ->on('roles')
+            //     ->onDelete('cascade');
+
+            // $table->foreign('ability_id')
+            //     ->references('id')
+            //     ->on('abilities')
+            //     ->onDelete('cascade');
+        });
+
+        Schema::create('wink_author_role', function (Blueprint $table) {
+            $table->unique(['author_id', 'role_id']);
+
+            $table->uuid('author_id');
+            $table->uuid('role_id');
+            $table->timestamps();
+
+            // $table->foreign('author_id')
+            //     ->references('id')
+            //     ->on('wink_authors')
+            //     ->onDelete('cascade');
+
+            // $table->foreign('role_id')
+            //     ->references('id')
+            //     ->on('roles')
+            //     ->onDelete('cascade');
+        });
     }
 
     /**
@@ -78,5 +142,9 @@ class CreateTables extends Migration
         Schema::dropIfExists('wink_authors');
         Schema::dropIfExists('wink_posts');
         Schema::dropIfExists('wink_pages');
+
+        Schema::dropIfExists('roles');
+        Schema::dropIfExists('abilities');
+        Schema::dropIfExists('wink_author_role');
     }
 }

@@ -58,6 +58,13 @@ export default [
         component: require('./screens/team/edit').default
     },
 
+    // Contact writing requests
+    {
+        path: '/contact',
+        name: 'contact',
+        component: require('./screens/contacts/index').default
+    },
+
 
     // Pages...
     {

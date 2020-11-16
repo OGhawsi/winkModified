@@ -1,9 +1,23 @@
 <?php
 
 namespace Wink;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 
-class WinkTag extends AbstractWinkModel
+class WinkTag extends AbstractWinkModel implements Searchable
 {
+    public $searchableType = 'Categories';
+
+    public function getSearchResult(): SearchResult
+    {
+       $url = route('blog.tag', $this->slug);
+    
+        return new SearchResult(
+           $this,
+           $this->name,
+           $url
+        );
+    }
     /**
      * The attributes that aren't mass assignable.
      *

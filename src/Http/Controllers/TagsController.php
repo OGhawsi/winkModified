@@ -60,6 +60,7 @@ class TagsController
         $data = [
             'name' => request('name'),
             'slug' => request('slug'),
+            'locale' => request('locale','en'),
             'meta' => request('meta', (object) []),
         ];
 

@@ -4,6 +4,7 @@ namespace Wink;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 use Wink\Http\Controllers\ForgotPasswordController;
 use Wink\Http\Controllers\LoginController;
 use Wink\Http\Middleware\Authenticate;
@@ -20,6 +21,12 @@ class WinkServiceProvider extends ServiceProvider
         $this->registerRoutes();
         $this->registerAuthGuard();
         $this->registerPublishing();
+
+        Gate::before(function ($wink_author, $ability) {
+            if ($wink_author->abilities()->contains($ability)) {
+                return true;   
+            }
+        });
 
         $this->loadViewsFrom(
             __DIR__.'/../resources/views', 'wink'

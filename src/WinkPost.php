@@ -4,10 +4,26 @@ namespace Wink;
 
 use DateTimeInterface;
 use Illuminate\Support\HtmlString;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 use League\CommonMark\GithubFlavoredMarkdownConverter;
 
-class WinkPost extends AbstractWinkModel
-{
+class WinkPost extends AbstractWinkModel implements Searchable
+{ 
+
+    public $searchableType = 'Articles';
+
+    public function getSearchResult(): SearchResult
+    {
+       $url = route('blog.post', $this->slug);
+    
+        return new SearchResult(
+           $this,
+           $this->title,
+           $url
+        );
+    }
+
     /**
      * The attributes that aren't mass assignable.
      *

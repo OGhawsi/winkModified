@@ -4,6 +4,7 @@ namespace Wink\Http\Controllers;
 
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use Spatie\Searchable\Search;
 use Wink\Http\Resources\PostsResource;
 use Wink\WinkPost;
 use Wink\WinkTag;
@@ -68,10 +69,11 @@ class PostsController
      */
     public function store($id)
     {
+
         $data = [
             'title' => request('title'),
             'excerpt' => request('excerpt', ''),
-            'locale' => request('locale', ''),
+            'locale' => request('locale','en'),
             'featured' => request('featured'),
             'slug' => request('slug'),
             'body' => request('body', ''),
@@ -142,5 +144,21 @@ class PostsController
         $entry = WinkPost::findOrFail($id);
 
         $entry->delete();
+    }
+
+
+    public function search()
+    {
+
+        if (request()->input('search') === Null) {
+            
+            return view('search-results');
+        }
+        $data = (new Search())
+        ->registerModel(WinkPost::class, 'title')
+        ->registerModel(WinkTag::class, 'name')
+        ->perform(request()->input('search'));
+        
+        return view('search-results', compact('data'));
     }
 }

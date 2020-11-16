@@ -31,7 +31,7 @@
          * Prepare the component.
          */
         mounted() {
-            document.title = "Pages — Wink.";
+            document.title = "Pages — Science4All.";
 
             this.loadEntries();
         },

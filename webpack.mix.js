@@ -29,4 +29,4 @@ mix
     .sass('resources/sass/dark.scss', 'public', {}, [tailwindcss('./dark.js')])
     .version()
     .copy('resources/favicon.png', 'public')
-    .copy('public', '../wink-testing/public/vendor/wink');
+    .copy('public', '../lite-blog/public/vendor/wink');

@@ -68,7 +68,7 @@
          * Prepare the component.
          */
         mounted() {
-            document.title = "Edit Page — Wink.";
+            document.title = "Edit Page — Science4All.";
 
             this.http().get('/api/pages/' + this.id).then(response => {
                 this.entry = _.cloneDeep(response.data.entry);

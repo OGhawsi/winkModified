@@ -31,9 +31,11 @@
          * Prepare the component.
          */
         mounted() {
-            document.title = "Team — Wink.";
+            document.title = "Team — Science4All.";
 
             this.loadEntries();
+
+           
         },
     }
 </script>
@@ -75,10 +77,10 @@
 
             <div v-if="ready && entries.length > 0">
                 <div v-for="entry in entries" :key="entry.id" class="border-t border-very-light flex items-center py-5">
-                    <div :title="entry.name">
+                    <div :title="entry.name.en">
                         <h2 class="text-xl font-semibold mb-3">
                             <router-link :to="{name:'team-edit', params:{id: entry.id}}" class="no-underline text-text-color">
-                                {{truncate(entry.name, 68)}}
+                                {{truncate(entry.name.en, 68)}} — {{truncate(entry.name.ps, 68)}}
                             </router-link>
                         </h2>
 

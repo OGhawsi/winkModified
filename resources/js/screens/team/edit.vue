@@ -27,9 +27,11 @@
                     working: false,
                     id: '',
                     name: '',
+                    Psname: '',
                     slug: '',
                     email: '',
                     bio: 'I am who I\'m meant to be, this is me.',
+                    pashtoBio: 'زه یو لیکوال یم',
                     avatar: '',
                     password: '',
                     meta: {
@@ -92,12 +94,14 @@
                     this.entry = response.data.entry;
 
                     this.form.id = response.data.entry.id;
-
+                    
                     if (this.id != 'new') {
-                        this.form.name = response.data.entry.name;
+                        this.form.name = response.data.entry.name.en;
+                        this.form.Psname = response.data.entry.name.ps;
                         this.form.slug = response.data.entry.slug;
                         this.form.email = response.data.entry.email;
-                        this.form.bio = response.data.entry.bio;
+                        this.form.bio = response.data.entry.bio.en;
+                        this.form.pashtoBio = response.data.entry.bio.ps;
                         this.form.avatar = response.data.entry.avatar;
                         this.form.meta = {
                             meta_description: response.data.entry.meta.meta_description || '',
@@ -129,25 +133,30 @@
                 this.form.working = true;
                 this.form.errors = [];
 
-                this.http().post('/api/team/' + this.id, this.form).then(response => {
-                    this.form.working = false;
+                this.http().post('/api/team/' + this.id, this.form)
+                    .then(response => {
+                        this.form.working = false;
 
-                    this.notifySuccess('Saved!', 2000);
+                        console.log();
 
-                    if (this.id == 'new') {
-                        this.id = this.form.id;
+                        this.notifySuccess('Done', 2000);
 
-                        this.$router.push({name: 'team-edit', params: {id: this.form.id}})
-                    }
+                        if (this.id == 'new') {
+                            this.id = this.form.id;
 
-                    if(this.Wink.author.id == this.entry.id && (this.theme != this.form.meta.theme || this.avatar != this.form.avatar)) {
-                        location.reload();
-                    }
-                }).catch(error => {
-                    this.form.errors = error.response.data.errors;
+                            this.$router.push({name: 'team-edit', params: {id: this.form.id}})
+                        }
 
-                    this.form.working = false;
-                });
+                        if(this.Wink.author.id == this.entry.id && (this.theme != this.form.meta.theme || this.avatar != this.form.avatar)) {
+                            location.reload();
+                        }
+                    }).catch(error => {
+                        this.form.errors = error.response.data.errors;
+
+                        this.form.working = false;
+
+                        this.alertError(error.response.data.message);
+                    });
             },
 
 
@@ -258,6 +267,15 @@
 
                     <form-errors :errors="form.errors.name"></form-errors>
                 </div>
+                <div class="input-group">
+                    <label for="name" class="input-label">نوم</label>
+                    <input type="text" class="input"
+                           v-model="form.Psname"
+                           placeholder="نوم ولیکي"
+                           id="Psname">
+
+                    <form-errors :errors="form.errors.Psname"></form-errors>
+                </div>
 
                 <div class="input-group">
                     <label for="slug" class="input-label">Slug</label>
@@ -302,9 +320,15 @@
                 </div>
 
                 <div class="input-group mb-5">
-                    <label for="slug" class="input-label mb-4">Bio</label>
+                    <label for="Slug" class="input-label mb-4">Bio</label>
                     <mini-editor v-model="form.bio"></mini-editor>
                     <form-errors :errors="form.errors.bio"></form-errors>
+                </div>
+
+                <div class="input-group mb-5">
+                    <label for="pashtoBio" class="input-label mb-4">خلاصه</label>
+                    <mini-editor v-model="form.pashtoBio"></mini-editor>
+                    <form-errors :errors="form.errors.pashtoBio"></form-errors>
                 </div>
 
                 <div v-if="uploading">

@@ -3,13 +3,16 @@
 namespace Wink\Http\Controllers;
 
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Wink\Http\Resources\TeamResource;
 use Wink\WinkAuthor;
 
+
 class TeamController
 {
+   
     /**
      * Return posts.
      *
@@ -49,6 +52,34 @@ class TeamController
             'entry' => $entry,
         ]);
     }
+    /**
+     * Return 
+     *
+     * @param  string  $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+   
+     public function storeOrUpdate($id)
+     {
+
+        if (Gate::allows('add-authors')){
+
+            $this->store($id);
+
+        } else if (Gate::allows('update-profile')) {
+            
+            $entry = WinkAuthor::findOrFail($id);
+
+            if ($entry->id == auth('wink')->user()->id) {
+                $this->store($entry->id);
+            }
+            else {
+                return response()->json(['message' => ' You are not authorized'], 402);
+            }
+
+        } 
+        
+     }
 
     /**
      * Store a single category.
@@ -58,6 +89,10 @@ class TeamController
      */
     public function store($id)
     {
+
+        $psName = request('Psname');
+        $pashtoBio = request('pashtoBio');
+
         $data = [
             'name' => request('name'),
             'slug' => request('slug'),
@@ -76,23 +111,29 @@ class TeamController
 
         $entry = $id !== 'new' ? WinkAuthor::findOrFail($id) : new WinkAuthor(['id' => request('id')]);
 
-        if (request('password')) {
-            $entry->password = Hash::make(request('password'));
-        }
-
-        if (request('email') !== $entry->email && Str::contains($entry->avatar, 'gravatar')) {
-            unset($data['avatar']);
-
-            $entry->avatar = null;
-        }
-
-        $entry->fill($data);
-
-        $entry->save();
-
-        return response()->json([
-            'entry' => $entry->fresh(),
-        ]);
+            if (request('password')) {
+                $entry->password = Hash::make(request('password'));
+            }
+            
+            if (request('email') !== $entry->email && Str::contains($entry->avatar, 'gravatar')) {
+                unset($data['avatar']);
+                
+                $entry->avatar = null;
+            }
+            
+            $entry->setTranslation('name', 'ps', $psName);
+            
+            $entry->setTranslation('bio', 'ps', $pashtoBio);
+            
+            $entry->fill($data);
+            
+            
+            $entry->save();
+            
+            return response()->json([
+                'entry' => $entry->fresh(),
+                ]);
+        
     }
 
     /**

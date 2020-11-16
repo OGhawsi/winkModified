@@ -3,9 +3,15 @@
 namespace Wink;
 
 use Illuminate\Contracts\Auth\Authenticatable;
+use Spatie\Translatable\HasTranslations;
+// use Wink\WinkRole;
+// use Wink\WinkAbility;
 
 class WinkAuthor extends AbstractWinkModel implements Authenticatable
 {
+    use HasTranslations;
+    
+    public $translatable = ['name','bio'];
     /**
      * The attributes that aren't mass assignable.
      *
@@ -149,4 +155,48 @@ class WinkAuthor extends AbstractWinkModel implements Authenticatable
     {
         return $value ?: 'https://secure.gravatar.com/avatar/'.md5(strtolower(trim($this->email))).'?s=80';
     }
+
+
+
+    /**
+     * Roles and Abilities for the backend
+     * 
+     */
+     /**
+      *
+     * A user may be assigned many roles.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function roles()
+    {
+        return $this->belongsToMany(WinkRole::class, 'wink_author_role','author_id','role_id')->withTimestamps();
+    }
+
+    /**
+     * Assign a new role to the user.
+     *
+     * @param  mixed  $role
+     */
+    public function assignRole($role)
+    {
+        if (is_string($role)) {
+            $role = WinkRole::whereName($role)->firstOrFail();
+        }
+
+        $this->roles()->sync($role, false);
+    }
+
+    /**
+     * Fetch the user's abilities.
+     *
+     * @return array
+     */
+    public function abilities()
+    {
+        return $this->roles
+            ->map->abilities
+            ->flatten()->pluck('name')->unique();
+    }
+
 }

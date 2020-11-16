@@ -295,6 +295,8 @@
 
                     this.http().delete('/api/posts/' + this.id, this.form).then(response => {
                         this.$router.push({name: 'posts'})
+                    }).catch(error => {
+                         this.alertError(error.response.data.message);
                     })
                 });
             },
@@ -479,8 +481,7 @@
             </div>
             <div class="input-group">
                 <label for="locale" class="input-label">Post Language</label>
-                <select v-model="form.locale" id="locale" class="input">
-                    <option disabled>Select Post Language</option>
+                <select v-model="form.locale" id="locale" class="">
                     <option value="en">English</option>
                     <option value="ps">Pashto</option>
                     <option value="fa">Dari</option>
@@ -489,7 +490,7 @@
                 <form-errors :errors="errors.locale"></form-errors>
             </div>
             <div class="input-group">
-                <label for="featured" class="input-label">Featured Post - {{form.featured}}</label>
+                <label for="featured" class="input-label">Featured Post</label>
                 <input type="checkbox" id="featured" v-model="form.featured" class="checkbox">
                 <form-errors :errors="errors.featured"></form-errors>
             </div>

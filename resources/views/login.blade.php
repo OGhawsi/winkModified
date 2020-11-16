@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Wink. — Login</title>
+    <title>Science4All Author's. — Login</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Merriweather|Nunito:200,200i,300,300i,400,400i,600,600i,800,800i,900,900i" rel="stylesheet">
@@ -21,7 +21,7 @@
     <div class="xl:w-1/2 mx-auto">
         <div class="flex items-center mb-10">
             <h2 class="mr-2 font-semibold font-serif" :class="{'hidden': hideLogoOnSmallScreens, 'sm:block': hideLogoOnSmallScreens}">
-                <span class="text-light">W</span>ink.
+                Science<span class="text-light">4</span>All.
             </h2>
 
             <h2 class="font-normal">— Log In</h2>
@@ -69,7 +69,15 @@
                 <a href="{{route('wink.password.forgot')}}" class="no-underline text-primary">Forgot your password?</a>
             </div>
 
-            <button type="submit" class="btn-primary">Login</button>
+            <div class="flex items-center justify-between mt-10">
+                <button type="submit" class="btn-primary">Login</button>
+                <p class="mr-2  text-xs font-serif" :class="{'hidden': hideLogoOnSmallScreens, 'sm:block': hideLogoOnSmallScreens}">
+                    Powered by:
+                    <a href="https://github.com/themsaid/wink" class=" underline:none ">
+                        <span class="text-light">W</span>ink. 
+                    </a>
+                </p>
+            </div>
         </form>
     </div>
 </div>

@@ -16,7 +16,8 @@
                 <div class="flex items-center mr-auto h-8">
                     <h3 class="mr-5 font-semibold font-serif" :class="{'hidden': hideLogoOnSmallScreens, 'sm:block': hideLogoOnSmallScreens}">
                         <router-link to="/" class="no-underline text-text-color">
-                            <span class="text-light">W</span>ink.
+                            Science<span class="text-light">4</span>All.
+                            <!-- <span class="text-light">W</span>ink. -->
                         </router-link>
                     </h3>
 
@@ -48,6 +49,9 @@
 
                             <router-link to="/team" class="no-underline text-text-color hover:text-primary w-full block py-2 px-4">
                                 Team
+                            </router-link>
+                            <router-link to="/contact" class="no-underline text-text-color hover:text-primary w-full block py-2 px-4">
+                                Author Requests
                             </router-link>
                             <a :href="'/'+Wink.path+'/logout'" class="no-underline text-text-color hover:text-primary w-full block py-2 px-4 border-t border-very-light">
                                 Log out

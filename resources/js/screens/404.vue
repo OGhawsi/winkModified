@@ -13,7 +13,7 @@
          * Prepare the component.
          */
         mounted() {
-            document.title = "404 — Wink.";
+            document.title = "404 — Science4All.";
         },
 
 
