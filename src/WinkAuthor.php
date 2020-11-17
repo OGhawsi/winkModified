@@ -1,6 +1,6 @@
 <?php
 
-namespace Wink;
+namespace Wink; 
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Spatie\Translatable\HasTranslations;
