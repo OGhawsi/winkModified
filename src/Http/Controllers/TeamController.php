@@ -122,8 +122,10 @@ class TeamController
             }
             
             $entry->setTranslation('name', 'ps', $psName);
+            $entry->setTranslation('name', 'fa', $psName);
             
             $entry->setTranslation('bio', 'ps', $pashtoBio);
+            $entry->setTranslation('bio', 'fa', $pashtoBio);
             
             $entry->fill($data);
             
