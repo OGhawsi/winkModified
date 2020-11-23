@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Wink. — Reset Password</title>
+    <title>Science4all — Reset Password</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Merriweather|Nunito:200,200i,300,300i,400,400i,600,600i,800,800i,900,900i" rel="stylesheet">
@@ -22,7 +22,7 @@
 
         <div class="flex items-center mb-10">
             <h2 class="mr-2 font-semibold font-serif" :class="{'hidden': hideLogoOnSmallScreens, 'sm:block': hideLogoOnSmallScreens}">
-                <span class="text-light">W</span>ink.
+                Science4all
             </h2>
 
             <h2 class="font-normal">— Reset Password</h2>
