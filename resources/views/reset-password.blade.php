@@ -21,7 +21,7 @@
     <div class="xl:w-1/2 mx-auto">
         <div class="flex items-center mb-10">
             <h2 class="mr-2 font-semibold font-serif" :class="{'hidden': hideLogoOnSmallScreens, 'sm:block': hideLogoOnSmallScreens}">
-                <span class="text-light">W</span>ink.
+                Science4All
             </h2>
 
             <h2 class="font-normal">— Your New Password</h2>
