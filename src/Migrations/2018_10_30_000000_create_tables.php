@@ -67,9 +67,7 @@ class CreateTables extends Migration
             $table->timestamps();
         });
 
-        Schema::table('wink_authors', function (Blueprint $table) {
-            $table->longText('name')->change();
-        });
+        
 
         Schema::create('wink_pages', function (Blueprint $table) {
             $table->uuid('id')->primary();
