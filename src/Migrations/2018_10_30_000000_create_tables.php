@@ -58,7 +58,7 @@ class CreateTables extends Migration
         Schema::create('wink_authors', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('slug')->unique();
-            $table->text('name');
+            $table->longText('name');
             $table->string('email')->unique();
             $table->string('password');
             $table->text('bio');
