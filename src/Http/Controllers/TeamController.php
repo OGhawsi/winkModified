@@ -66,7 +66,7 @@ class TeamController
 
             $this->store($id);
 
-        } else if (Gate::allows('update-profile')) {
+        } else {
             
             $entry = WinkAuthor::findOrFail($id);
 

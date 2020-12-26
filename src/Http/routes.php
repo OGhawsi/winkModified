@@ -24,7 +24,7 @@ Route::delete('/api/tags/{id}', [TagsController::class, 'delete'])->name('tags.d
 // Blog Authors...
 Route::get('/api/team', [TeamController::class, 'index'])->name('team.index');
 Route::get('/api/team/{id?}', [TeamController::class, 'show'])->name('team.show');
-Route::post('/api/team/{id}', [TeamController::class, 'storeOrUpdate'])->name('team.store');
+Route::post('/api/team/{id}', [TeamController::class, 'store'])->name('team.store');
 Route::delete('/api/team/{id}', [TeamController::class, 'delete'])->name('team.delete')->middleware('can:delete-authors');
 
 // Blog contacts requsts...
