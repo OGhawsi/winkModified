@@ -61,7 +61,7 @@ class TeamController
    
      public function storeOrUpdate($id)
      {
-
+        
         if (Gate::allows('add-authors')){
 
             $this->store($id);
@@ -131,10 +131,12 @@ class TeamController
             
             
             $entry->save();
+
+            $entry->assignRole('editor');
             
             return response()->json([
                 'entry' => $entry->fresh(),
-                ]);
+            ]);
         
     }
 
