@@ -132,7 +132,7 @@ class TeamController
             
             $entry->save();
 
-            $entry->assignRole('editor');
+            $entry->assignRole('author');
             
             return response()->json([
                 'entry' => $entry->fresh(),
