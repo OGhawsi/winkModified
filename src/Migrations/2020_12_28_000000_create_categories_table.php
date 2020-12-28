@@ -19,6 +19,7 @@ class CreateCategoriesTable extends Migration
             $table->string('name');
             $table->string('locale')->default('en');
             $table->timestamps();
+            $table->text('meta')->nullable();
 
             $table->index('created_at');
         });

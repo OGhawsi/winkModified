@@ -17,6 +17,7 @@
                 entry: null,
                 currentTab: 'post',
                 tags: [],
+                categories: [],
                 authors: [],
                 status: '',
 
@@ -40,6 +41,7 @@
                     locale: '',
                     featured: false,
                     tags: [],
+                    categories: [],
                     author_id: '',
                     featured_image: '',
                     featured_image_caption: '',
@@ -158,6 +160,7 @@
                     this.form.published = data.published;
                     this.form.markdown = data.markdown;
                     this.form.tags = data.tags || '';
+                    this.form.categories = data.categories || '';
                     this.form.author_id = data.author_id || '';
                     this.form.featured_image = data.featured_image;
                     this.form.featured_image_caption = data.featured_image_caption;
@@ -196,6 +199,10 @@
             loadResources() {
                 this.http().get('/api/tags').then(response => {
                     this.tags = response.data.data;
+                });
+
+                this.http().get('/api/categories').then(response => {
+                    this.categories = response.data.data;
                 });
 
                 this.http().get('/api/team').then(response => {
@@ -471,11 +478,22 @@
             </div>
 
             <div class="input-group">
+                <label for="category_ids" class="input-label mb-4">Categories</label>
+                <multiselect :options="categories"
+                             option-id="id"
+                             v-model="form.categories"
+                             option-text="name"
+                ></multiselect>
+                <form-errors :errors="errors.categories"></form-errors>
+            </div>
+
+            <div class="input-group">
                 <label for="excerpt" class="input-label">Excerpt</label>
                 <textarea class="input"
                           v-model="form.excerpt"
                           placeholder="What's this post about?"
-                          id="excerpt"></textarea>
+                          id="excerpt">
+                </textarea>
 
                 <form-errors :errors="errors.excerpt"></form-errors>
             </div>

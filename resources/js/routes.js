@@ -48,13 +48,13 @@ export default [
     {
         path: '/categories/new',
         name: 'category-new',
-        component: require('./screens/categoires/edit').default
+        component: require('./screens/categories/edit').default
     },
 
     {
-        path: '/categoires/:id',
+        path: '/categories/:id',
         name: 'category-edit',
-        component: require('./screens/categoires/edit').default
+        component: require('./screens/categories/edit').default
     },
 
 

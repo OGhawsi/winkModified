@@ -8,6 +8,7 @@ use Spatie\Searchable\Search;
 use Wink\Http\Resources\PostsResource;
 use Wink\WinkPost;
 use Wink\WinkTag;
+use Wink\WinkCategory;
 
 class PostsController
 {
@@ -28,9 +29,13 @@ class PostsController
             $q->whereHas('tags', function ($query) use ($value) {
                 $query->where('id', $value);
             });
+        })->when(request('category_id'), function ($q, $value) {
+            $q->whereHas('categories', function ($query) use ($value) {
+                $query->where('id', $value);
+            });
         })
             ->orderBy('created_at', 'DESC')
-            ->with('tags')
+            ->with(['tags','categories'])
             ->paginate(30);
 
         return PostsResource::collection($entries);
@@ -54,7 +59,7 @@ class PostsController
             ]);
         }
 
-        $entry = WinkPost::with('tags')->findOrFail($id);
+        $entry = WinkPost::with(['tags','categories'])->findOrFail($id);
 
         return response()->json([
             'entry' => $entry,
@@ -99,6 +104,10 @@ class PostsController
 
         $entry->save();
 
+        $entry->categories()->sync(
+            $this->collectCategories(request('categories'))
+        );
+
         $entry->tags()->sync(
             $this->collectTags(request('tags'))
         );
@@ -130,6 +139,31 @@ class PostsController
             }
 
             return (string) $tag->id;
+        })->toArray();
+    }
+
+    /**
+     * Tags incoming from the request.
+     *
+     * @param  array  $incomingTags
+     * @return array
+     */
+    private function collectCategories($incomingCategories)
+    {
+        $allCategories = WinkCategory::all();
+
+        return collect($incomingCategories)->map(function ($incomingCategories) use ($allCategories) {
+            $category = $allCategories->where('id', $incomingCategories['id'])->first();
+
+            if (! $category) {
+                $category = WinkCategory::create([
+                    'id' => $id = Str::uuid(),
+                    'name' => $incomingCategories['name'],
+                    'slug' => Str::slug($incomingCategories['name']),
+                ]);
+            }
+
+            return (string) $category->id;
         })->toArray();
     }
 

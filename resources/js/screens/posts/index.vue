@@ -16,6 +16,7 @@
             return {
                 baseURL: '/api/posts',
                 tags: [],
+                categories: [],
                 authors: [],
                 entries: [],
                 hasMoreEntries: false,
@@ -28,6 +29,7 @@
                     status: '',
                     author_id: '',
                     tag_id: '',
+                    category_id: '',
                 }
             };
         },
@@ -56,6 +58,10 @@
                     this.tags = response.data.data;
                 });
 
+                this.http().get('/api/categories').then(response => {
+                    this.categories = response.data.data;
+                });
+
                 this.http().get('/api/team').then(response => {
                     this.authors = response.data.data;
                 });
@@ -67,6 +73,13 @@
              */
             formatTags(tags) {
                 return _.chain(tags).map('name').join(', ').value();
+            },
+
+            /**
+             * Format the given categories for display.
+             */
+            formatCategories(categories) {
+                return _.chain(categories).map('name').join(', ').value();
             },
 
 
@@ -134,6 +147,15 @@
                             <option v-for="tag in tags" :value="tag.id">{{tag.name}}</option>
                         </select>
                     </div>
+                    <div class="flex items-center justify-between mt-3">
+                        <span>Category</span>
+                        <select name="category"
+                                class="border border-lighter rounded w-3/5 focus:outline-none appearance-none py-1 px-3"
+                                v-model="filters.category_id">
+                            <option value="">All</option>
+                            <option v-for="category in categories" :value="category.id">{{category.name}}</option>
+                        </select>
+                    </div>
 
                     <button v-if="isFiltered"
                             @click.prevent="clearFilters"
@@ -171,6 +193,7 @@
                             <span v-if="! entry.published" class="text-red">Draft</span>
                             — Updated {{timeAgo(entry.updated_at)}}
                             <span v-if="entry.tags.length">— Tags: {{formatTags(entry.tags)}}</span>
+                            <span v-if="entry.categories.length">— Categories: {{formatCategories(entry.categories)}}</span>
                         </small>
                     </div>
 
