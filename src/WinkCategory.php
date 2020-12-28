@@ -4,13 +4,13 @@ namespace Wink;
 use Spatie\Searchable\Searchable;
 use Spatie\Searchable\SearchResult;
 
-class WinkTag extends AbstractWinkModel implements Searchable
+class WinkCategory extends AbstractWinkModel implements Searchable
 {
-    public $searchableType = 'Tags';
+    public $searchableType = 'Categories';
 
     public function getSearchResult(): SearchResult
     {
-       $url = route('blog.tag', $this->slug);
+       $url = route('blog.categoriy', $this->slug);
     
         return new SearchResult(
            $this,
@@ -30,7 +30,7 @@ class WinkTag extends AbstractWinkModel implements Searchable
      *
      * @var string
      */
-    protected $table = 'wink_tags';
+    protected $table = 'wink_categories';
 
     /**
      * The primary key for the model.
@@ -63,13 +63,13 @@ class WinkTag extends AbstractWinkModel implements Searchable
     ];
 
     /**
-     * The posts that has the tag.
+     * The posts that has the categories.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function posts()
     {
-        return $this->belongsToMany(WinkPost::class, 'wink_posts_tags', 'tag_id', 'post_id');
+        return $this->belongsToMany(WinkPost::class, 'wink_categories_posts', 'category_id', 'post_id');
     }
 
     /**

@@ -6,6 +6,7 @@ use Wink\Http\Controllers\PagesController;
 use Wink\Http\Controllers\PostsController;
 use Wink\Http\Controllers\SPAViewController;
 use Wink\Http\Controllers\TagsController;
+use Wink\Http\Controllers\CategoriesController;
 use Wink\Http\Controllers\TeamController;
 use Wink\Http\Controllers\ContactsController;
 
@@ -20,6 +21,12 @@ Route::get('/api/tags', [TagsController::class, 'index'])->name('tags.index');
 Route::get('/api/tags/{id?}', [TagsController::class, 'show'])->name('tags.show');
 Route::post('/api/tags/{id}', [TagsController::class, 'store'])->name('tags.store');
 Route::delete('/api/tags/{id}', [TagsController::class, 'delete'])->name('tags.delete')->middleware('can:delete-tags');
+
+// Blog Categories...
+Route::get('/api/categories', [CategoriesController::class, 'index'])->name('categories.index');
+Route::get('/api/categories/{id?}', [CategoriesController::class, 'show'])->name('categories.show');
+Route::post('/api/categories/{id}', [CategoriesController::class, 'store'])->name('categories.store');
+Route::delete('/api/categories/{id}', [CategoriesController::class, 'delete'])->name('categories.delete')->middleware('can:delete-categories');
 
 // Blog Authors...
 Route::get('/api/team', [TeamController::class, 'index'])->name('team.index');

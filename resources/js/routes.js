@@ -19,7 +19,7 @@ export default [
     },
 
 
-    // Categories...
+    // Tags...
     {
         path: '/tags',
         name: 'tags',
@@ -36,6 +36,25 @@ export default [
         path: '/tags/:id',
         name: 'tag-edit',
         component: require('./screens/tags/edit').default
+    },
+
+    // Categories
+    {
+        path: '/categories',
+        name: 'categories',
+        component: require('./screens/categories/index').default
+    },
+
+    {
+        path: '/categories/new',
+        name: 'category-new',
+        component: require('./screens/categoires/edit').default
+    },
+
+    {
+        path: '/categoires/:id',
+        name: 'category-edit',
+        component: require('./screens/categoires/edit').default
     },
 
 
