@@ -32,7 +32,7 @@ class ResetPasswordEmail extends Mailable
     public function build()
     {
         return $this->subject('Reset your password')
-            ->view('wink::emails.password', [
+            ->markdown('wink::emails.password', [
                 'link' => route('wink.password.reset', ['token' => $this->token]),
             ]);
     }

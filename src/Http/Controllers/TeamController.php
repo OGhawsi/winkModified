@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Mail;
+use Wink\Mail\SendAuthorCredentialsEmail;
 use Wink\Http\Resources\TeamResource;
 use Wink\WinkAuthor;
 
@@ -129,15 +131,33 @@ class TeamController
             
             $entry->fill($data);
             
-            
-            $entry->save();
+            if (WinkAuthor::find($id)) {
+                $entry->save();
+                $entry->assignRole('author');
+            }
+            else {
+            // send email to the author
+                 $this->sendAuthorCredentials($data['name'],$data['email'],request('password'));
+                 $entry->save();
+                 $entry->assignRole('author');
+            }
 
-            $entry->assignRole('author');
-            
             return response()->json([
                 'entry' => $entry->fresh(),
             ]);
         
+    }
+
+    /**
+     * Send author credentials email.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function sendAuthorCredentials($name, $email, $password)
+    {
+            Mail::to($email)->send(new SendAuthorCredentialsEmail(
+                $name, $email, $password
+            ));
     }
 
     /**
