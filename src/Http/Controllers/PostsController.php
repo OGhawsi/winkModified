@@ -191,6 +191,7 @@ class PostsController
         $data = (new Search())
         ->registerModel(WinkPost::class, 'title')
         ->registerModel(WinkTag::class, 'name')
+        ->registerModel(WinkCategory::class, 'name')
         ->perform(request()->input('search'));
         
         return view('search-results', compact('data'));

@@ -10,7 +10,7 @@ class WinkCategory extends AbstractWinkModel implements Searchable
 
     public function getSearchResult(): SearchResult
     {
-       $url = route('blog.categoriy', $this->slug);
+       $url = route('blog.category', $this->slug);
     
         return new SearchResult(
            $this,
