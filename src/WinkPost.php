@@ -94,9 +94,9 @@ class WinkPost extends AbstractWinkModel implements Searchable
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function categories()
+    public function category()
     {
-        return $this->belongsToMany(WinkCategory::class, 'wink_categories_posts', 'post_id', 'category_id');
+        return $this->belongsTo(WinkCategory::class, 'category_id');
     }
 
     /**

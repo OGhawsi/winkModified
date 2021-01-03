@@ -63,13 +63,13 @@ class WinkCategory extends AbstractWinkModel implements Searchable
     ];
 
     /**
-     * The posts that has the categories.
+     * The posts that has the category.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function posts()
     {
-        return $this->belongsToMany(WinkPost::class, 'wink_categories_posts', 'category_id', 'post_id');
+        return $this->hasMany(WinkPost::class, 'category_id', 'id');
     }
 
     /**
@@ -77,12 +77,12 @@ class WinkCategory extends AbstractWinkModel implements Searchable
      *
      * @return void
      */
-    protected static function boot()
-    {
-        parent::boot();
+    // protected static function boot()
+    // {
+    //     parent::boot();
 
-        static::deleting(function ($item) {
-            $item->posts()->detach();
-        });
-    }
+    //     static::deleting(function ($item) {
+    //         $item->posts()->detach();
+    //     });
+    // }
 }

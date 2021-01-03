@@ -25,8 +25,8 @@ Route::delete('/api/tags/{id}', [TagsController::class, 'delete'])->name('tags.d
 // Blog Categories...
 Route::get('/api/categories', [CategoriesController::class, 'index'])->name('categories.index');
 Route::get('/api/categories/{id?}', [CategoriesController::class, 'show'])->name('categories.show');
-Route::post('/api/categories/{id}', [CategoriesController::class, 'store'])->name('categories.store')->middleware('can:delete-contacts');
-Route::delete('/api/categories/{id}', [CategoriesController::class, 'delete'])->name('categories.delete')->middleware('can:delete-contacts');
+Route::post('/api/categories/{id}', [CategoriesController::class, 'store'])->name('categories.store')->middleware('can:delete-authors');
+Route::delete('/api/categories/{id}', [CategoriesController::class, 'delete'])->name('categories.delete')->middleware('can:delete-authors');
 
 // Blog Authors...
 Route::get('/api/team', [TeamController::class, 'index'])->name('team.index');

@@ -30,12 +30,12 @@ class PostsController
                 $query->where('id', $value);
             });
         })->when(request('category_id'), function ($q, $value) {
-            $q->whereHas('categories', function ($query) use ($value) {
-                $query->where('id', $value);
-            });
-        })
+            $q->whereCategoryId($value);
+        
+        })  
+        
             ->orderBy('created_at', 'DESC')
-            ->with(['tags','categories'])
+            ->with('tags')
             ->paginate(30);
 
         return PostsResource::collection($entries);
@@ -59,7 +59,7 @@ class PostsController
             ]);
         }
 
-        $entry = WinkPost::with(['tags','categories'])->findOrFail($id);
+        $entry = WinkPost::with('tags')->findOrFail($id);
 
         return response()->json([
             'entry' => $entry,
@@ -85,6 +85,7 @@ class PostsController
             'published' => request('published'),
             'markdown' => request('markdown'),
             'author_id' => request('author_id'),
+            'category_id' => request('category_id'),
             'featured_image' => request('featured_image'),
             'featured_image_caption' => request('featured_image_caption', ''),
             'publish_date' => request('publish_date', ''),
@@ -104,9 +105,6 @@ class PostsController
 
         $entry->save();
 
-        $entry->categories()->sync(
-            $this->collectCategories(request('categories'))
-        );
 
         $entry->tags()->sync(
             $this->collectTags(request('tags'))
@@ -142,30 +140,6 @@ class PostsController
         })->toArray();
     }
 
-    /**
-     * Tags incoming from the request.
-     *
-     * @param  array  $incomingTags
-     * @return array
-     */
-    private function collectCategories($incomingCategories)
-    {
-        $allCategories = WinkCategory::all();
-
-        return collect($incomingCategories)->map(function ($incomingCategories) use ($allCategories) {
-            $category = $allCategories->where('id', $incomingCategories['id'])->first();
-
-            if (! $category) {
-                $category = WinkCategory::create([
-                    'id' => $id = Str::uuid(),
-                    'name' => $incomingCategories['name'],
-                    'slug' => Str::slug($incomingCategories['name']),
-                ]);
-            }
-
-            return (string) $category->id;
-        })->toArray();
-    }
 
     /**
      * Return a single post.

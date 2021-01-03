@@ -254,6 +254,7 @@
             </h2>
 
             <div class="lg:w-2/3 mx-auto" v-if="ready && entry">
+                
                 <h1 class="font-semibold text-3xl mb-10" v-if="id != 'new' && Wink.author.id != entry.id">Edit Author</h1>
                 <h1 class="font-semibold text-3xl mb-10" v-if="id == 'new' && Wink.author.id != entry.id">New Author</h1>
                 <h1 class="font-semibold text-3xl mb-10" v-if="Wink.author.id == entry.id">Your Profile</h1>

@@ -14,8 +14,10 @@ class AddViewcountField extends Migration
     public function up()
     {
         Schema::table('wink_posts', function (Blueprint $table) {
-            $table->bigInteger('viewcount');
-            $table->bigInteger('like');
+            $table->bigInteger('viewcount')->default(0);
+            $table->bigInteger('like')->default(0);
+            $table->uuid('category_id')->index()->nullable();
+            
         });
     }
 
@@ -29,6 +31,7 @@ class AddViewcountField extends Migration
         Schema::table('wink_posts', function (Blueprint $table) {
             $table->bigInteger('viewcount');
             $table->bigInteger('like');
+            $table->uuid('category_id')->index()->nullable();
         });
     }
 }

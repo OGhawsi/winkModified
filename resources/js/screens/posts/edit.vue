@@ -17,7 +17,7 @@
                 entry: null,
                 currentTab: 'post',
                 tags: [],
-                categories: [],
+                Categories: [],
                 authors: [],
                 status: '',
 
@@ -41,7 +41,7 @@
                     locale: '',
                     featured: false,
                     tags: [],
-                    categories: [],
+                    category_id: '',
                     author_id: '',
                     featured_image: '',
                     featured_image_caption: '',
@@ -160,7 +160,7 @@
                     this.form.published = data.published;
                     this.form.markdown = data.markdown;
                     this.form.tags = data.tags || '';
-                    this.form.categories = data.categories || '';
+                    this.form.category_id = data.category_id || '';
                     this.form.author_id = data.author_id || '';
                     this.form.featured_image = data.featured_image;
                     this.form.featured_image_caption = data.featured_image_caption;
@@ -478,14 +478,15 @@
             </div>
 
             <div class="input-group">
-                <label for="category_ids" class="input-label mb-4">Categories</label>
-                <multiselect :options="categories"
-                             option-id="id"
-                             v-model="form.categories"
-                             option-text="name"
-                ></multiselect>
-                <form-errors :errors="errors.categories"></form-errors>
+                <label for="category_id" class="input-label">Category</label>
+                <select name="category_id" class="input"
+                        v-model="form.category_id"
+                        id="category_id">
+                    <option v-for="category in categories" :value="category.id">{{category.name}}</option>
+                </select>
+                <form-errors :errors="errors.category_id"></form-errors>
             </div>
+
 
             <div class="input-group">
                 <label for="excerpt" class="input-label">Excerpt</label>

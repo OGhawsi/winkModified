@@ -46,6 +46,7 @@
             this.loadResources();
 
             this.watchFiltersChanges();
+
         },
 
 
@@ -73,13 +74,6 @@
              */
             formatTags(tags) {
                 return _.chain(tags).map('name').join(', ').value();
-            },
-
-            /**
-             * Format the given categories for display.
-             */
-            formatCategories(categories) {
-                return _.chain(categories).map('name').join(', ').value();
             },
 
 
@@ -154,6 +148,7 @@
                                 v-model="filters.category_id">
                             <option value="">All</option>
                             <option v-for="category in categories" :value="category.id">{{category.name}}</option>
+                            <option>{{filters.category_id}}</option>
                         </select>
                     </div>
 
@@ -163,6 +158,8 @@
                     </button>
                 </filters>
             </div>
+
+            
 
             <preloader v-if="!ready"></preloader>
 
@@ -178,6 +175,7 @@
 
             <div v-if="ready && entries.length > 0">
                 <div v-for="entry in entries" :key="entry.id" class="border-t border-very-light flex items-center">
+
                     <div class="py-4" :title="entry.title">
                         <h2 class="text-xl font-semibold mb-3">
                             <router-link :to="{name:'post-edit', params:{id: entry.id}}" class="no-underline text-text-color">
@@ -186,14 +184,14 @@
                         </h2>
 
                         <p class="mb-3">{{truncate(entry.body.replace(/(<([^>]+)>)/ig,""), 100)}}</p>
-
+        
                         <small class="text-light">
                             <span v-if="entry.published && !dateInTheFuture(entry.publish_date)">Published {{timeAgo(entry.publish_date)}}</span>
                             <span v-if="entry.published && dateInTheFuture(entry.publish_date)" class="text-green">Scheduled {{timeAgo(entry.publish_date)}}</span>
                             <span v-if="! entry.published" class="text-red">Draft</span>
                             — Updated {{timeAgo(entry.updated_at)}}
-                            <span v-if="entry.tags.length">— Tags: {{formatTags(entry.tags)}}</span>
-                            <span v-if="entry.categories.length">— Categories: {{formatCategories(entry.categories)}}</span>
+                            <!-- <span v-if="entry.tags.length">— Tags: {{formatTags(entry.tags)}}</span> -->
+                            <span v-for="category in categories" v-if="entry.category_id == category.id">— Category: {{category.name}}</span>
                         </small>
                     </div>
 

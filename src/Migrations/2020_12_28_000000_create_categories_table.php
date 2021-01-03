@@ -24,12 +24,6 @@ class CreateCategoriesTable extends Migration
             $table->index('created_at');
         });
 
-        Schema::create('wink_categories_posts', function (Blueprint $table) {
-            $table->uuid('category_id');
-            $table->uuid('post_id');
-
-            $table->unique(['category_id','post_id']);
-        });
     }
 
       
@@ -42,6 +36,5 @@ class CreateCategoriesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('wink_categories');
-        Schema::dropIfExists('wink_categories_posts');
     }
 }

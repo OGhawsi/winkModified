@@ -83,7 +83,7 @@
                                 {{truncate(entry.name.en, 68)}} — {{truncate(entry.name.ps, 68)}}
                             </router-link>
                         </h2>
-
+                        <!-- <span v-for="role in entry.roles">{{role.name}}</span> -->
                         <small class="text-light">
                             <span>{{entry.email}}</span>
                             — Created {{timeAgo(entry.created_at)}}

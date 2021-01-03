@@ -4,7 +4,8 @@ module.exports = {
             return !!this.searchQuery.length ||
                 (this.filters && this.filters.status) ||
                 (this.filters && this.filters.author_id) ||
-                (this.filters && this.filters.tag_id)
+                (this.filters && this.filters.tag_id) ||
+                (this.filters && this.filters.category_id)
                 ;
         }
     },
@@ -23,7 +24,8 @@ module.exports = {
                 (this.searchQuery ? '&search=' + this.searchQuery : '') +
                 (this.filters && this.filters.status ? '&status=' + this.filters.status : '') +
                 (this.filters && this.filters.author_id ? '&author_id=' + this.filters.author_id : '') +
-                (this.filters && this.filters.tag_id ? '&tag_id=' + this.filters.tag_id : '')
+                (this.filters && this.filters.tag_id ? '&tag_id=' + this.filters.tag_id : '') +
+                (this.filters && this.filters.category_id ? '&category_id=' + this.filters.category_id : '') 
             ).then(response => {
                 this.entries = response.data.data;
 

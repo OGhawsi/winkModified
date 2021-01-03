@@ -4,8 +4,10 @@ namespace Wink\Http\Controllers;
 
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Validation\Rule;
 use Wink\Http\Resources\ContactsResource;
+use Illuminate\Support\Facades\Mail;
+use Wink\Mail\SendContactInfoToAdmin;
+use Illuminate\Validation\Rule;
 use Wink\WinkContact;
 
 class ContactsController
@@ -66,8 +68,17 @@ class ContactsController
 
         $entry->save();
 
+        $this->sendContactInfoToAdmin($data);
+
         notify()->success('Thanks, Your details recieved successfully');
         return redirect()->to(route('home'));
+    }
+
+    public function sendContactInfoToAdmin($data)
+    {
+            Mail::to('ghawsiweb@gmail.com')->send(new SendContactInfoToAdmin(
+                $data
+            ));
     }
 
 

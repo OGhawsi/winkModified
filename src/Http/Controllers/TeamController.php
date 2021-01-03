@@ -27,6 +27,7 @@ class TeamController
         })
             ->orderBy('created_at', 'DESC')
             ->withCount('posts')
+            ->with('roles')
             ->paginate(30);
 
         return TeamResource::collection($entries);
